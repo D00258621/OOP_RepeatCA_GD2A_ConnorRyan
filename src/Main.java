@@ -46,6 +46,24 @@ public class Main {
                     Player p2 = player2.get(Fid);
                     System.out.println(p2);
                     break;
+                case 3:
+                    PlayerDAO player3 = new PlayerDAO();
+                    System.out.println("Insert Player Name: ");
+                    String name = scanner.nextLine();
+                    System.out.println("Insert Player Age: ");
+                    int age = scanner.nextInt();
+                    System.out.println("Insert Player Winrate: ");
+                    double winrate = scanner.nextDouble();
+
+                    Player newPlayer = new Player(0, name, age, winrate);
+                    int result = player3.insert(newPlayer);
+                    if (result == 1) {
+                        System.out.println("Player inserted successfully");
+                    } else {
+                        System.out.println("Player insert failed, please try again");
+                    }
+                    break;
+
             }
         }
     }

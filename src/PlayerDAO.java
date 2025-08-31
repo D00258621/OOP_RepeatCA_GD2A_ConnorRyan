@@ -51,7 +51,18 @@ public class PlayerDAO implements InterfaceDAO {
     }
     @Override
     public int insert(Player player) throws SQLException {
-      return 0;
+      Connection connection = SqlConnection.getConnection();
+      String sql = "INSERT INTO players (name, age, winrate) VALUES (?, ?, ?)";
+      PreparedStatement ps = connection.prepareStatement(sql);
+
+      ps.setString(1, player.getName());
+      ps.setInt(2, player.getAge());
+      ps.setDouble(3, player.getWinrate());
+      int result = ps.executeUpdate();
+
+      SqlConnection.closeConnection(connection);
+      SqlConnection.closedPrepareStatement(ps);
+      return result;
     }
 
     @Override
