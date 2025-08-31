@@ -6,7 +6,25 @@ public class PlayerDAO implements InterfaceDAO {
 
     @Override
     public List<Player> getAll() throws SQLException {
-        return null;
+        Connection con = SqlConnection.getConnection();
+        String sql = "SELECT id, name, age, winrate FROM players";
+        List<Player> players = new ArrayList<Player>();
+        Statement statement = con.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+
+        while (rs.next()) {
+            int dID = rs.getInt("id");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            double winRate = rs.getDouble("winrate");
+            Player player = new Player(dID, name, age, winRate);
+            players.add(player);
+        }
+        SqlConnection.closeConnection(con);
+        SqlConnection.closeStatement(statement);
+        SqlConnection.closeResultSet(rs);
+        return players;
+
     }
 
     @Override
