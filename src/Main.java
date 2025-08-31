@@ -24,7 +24,7 @@ public class Main {
             switch (choice) {
                 case 0:
                     System.out.println("Are you sure you want to exit? Y/N");
-                    if (scanner.nextLine().equals("Y")) {
+                    if (scanner.nextLine().equalsIgnoreCase("Y")) {
                         System.out.println("Good Bye");
                         loop = false;
                     } else {
@@ -33,11 +33,18 @@ public class Main {
                     break;
                 case 1:
                     System.out.println("\n\n\nLoading Database...");
-                    PlayerDAO player = new PlayerDAO();
-                    List<Player> p = player.getAll();
+                    PlayerDAO player1 = new PlayerDAO();
+                    List<Player> p = player1.getAll();
                     for (Player p1 : p) {
                         System.out.println(p1);
                     }
+                    break;
+                case 2:
+                    System.out.println("ID of player you want to find");
+                    int Fid = scanner.nextInt();
+                    PlayerDAO player2 = new PlayerDAO();
+                    Player p2 = player2.get(Fid);
+                    System.out.println(p2);
                     break;
             }
         }
