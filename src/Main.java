@@ -56,14 +56,33 @@ public class Main {
                     double winrate = scanner.nextDouble();
 
                     Player newPlayer = new Player(0, name, age, winrate);
-                    int result = player3.insert(newPlayer);
-                    if (result == 1) {
+                    int result1 = player3.insert(newPlayer);
+                    if (result1 == 1) {
                         System.out.println("Player inserted successfully");
                     } else {
                         System.out.println("Player insert failed, please try again");
                     }
                     break;
+                case 4:
+                    System.out.println("Insert ID to Update: ");
+                    int id = scanner.nextInt();
+                    System.out.println("New Name: ");
+                    String newName = scanner.nextLine();
+                    System.out.println("New Age: ");
+                    int newAge = scanner.nextInt();
+                    System.out.println("New Winrate: ");
+                    double newWinrate = scanner.nextDouble();
 
+                    Player updatePlayer = new Player(id, newName, newAge, newWinrate);
+                    PlayerDAO player4 = new PlayerDAO();
+                    int result2 = player4.update(updatePlayer);
+                    if (result2 == 1) {
+                        System.out.println("Player updated successfully");
+                    } else {
+                        System.out.println("Player update failed, please try again");
+                    }
+                case 5:
+                        
             }
         }
     }
