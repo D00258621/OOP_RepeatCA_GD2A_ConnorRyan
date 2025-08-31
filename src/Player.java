@@ -46,11 +46,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", winrate=" + winrate +
-                '}';
+        return "Player "+id+": Name:"+name+" Age:"+age+" Winrate:"+winrate;
     }
 }
