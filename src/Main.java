@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -68,6 +69,7 @@ public class Main {
                     int id = scanner.nextInt();
                     System.out.println("New Name: ");
                     String newName = scanner.nextLine();
+                    scanner.nextLine();
                     System.out.println("New Age: ");
                     int newAge = scanner.nextInt();
                     System.out.println("New Winrate: ");
@@ -81,8 +83,19 @@ public class Main {
                     } else {
                         System.out.println("Player update failed, please try again");
                     }
+                    break;
                 case 5:
-                        
+                    System.out.println("Delete Player by ID: ");
+                    int id2 = scanner.nextInt();
+                    PlayerDAO player5 = new PlayerDAO();
+                    Player deletePlayer = player5.get(id2);
+                    int result3 = player5.delete(deletePlayer);
+                    if (result3 == 1) {
+                        System.out.println("Player deleted successfully");
+                    } else {
+                        System.out.println("Player delete failed, please try again");
+                    }
+                    break;
             }
         }
     }

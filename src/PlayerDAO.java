@@ -2,6 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Data access object for player
 public class PlayerDAO implements InterfaceDAO {
 
     @Override
@@ -83,8 +84,20 @@ public class PlayerDAO implements InterfaceDAO {
         return result;
     }
     @Override
-    public int delete(Player player) {
-        return 0;
+    public int delete(Player player) throws SQLException{
+        Connection connection = SqlConnection.getConnection();
+        String sql = "DELETE FROM players Where id = ?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,player.getId());
+        int result = ps.executeUpdate();
+        String sql2 = "DELETE FROM players Where id is not null And name is NULL And age is NULL And winrate is NULL";
+        ps = connection.prepareStatement(sql2);
+        ps.executeUpdate();
+        SqlConnection.closedPrepareStatement(ps);
+        SqlConnection.closeConnection(connection);
+
+        return result;
     }
 
 }
